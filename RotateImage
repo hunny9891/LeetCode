@@ -1,0 +1,42 @@
+package com.leetcode;
+
+import java.util.Arrays;
+
+public class RotateImage {
+	 public void rotate(int[][] matrix) {
+		 if(matrix.length == 0 || matrix == null) return;
+		 for(int i=0;i<matrix[0].length;i++) {
+			 for(int j=0;j<i;j++) {
+				 exch(matrix,i,j);
+			 }
+		 }
+		 // Rotate each row to right once.
+		 for(int i=0;i<matrix[0].length;i++) {
+			 int start = 0;
+			 int end = matrix[0].length -1;
+			 while(start < end) {
+				 int temp = matrix[i][start];
+				 matrix[i][start] = matrix[i][end];
+				 matrix[i][end] = temp;
+				 start++;
+				 end--;
+			 }
+			System.out.println(Arrays.toString(matrix[i]));
+		 }
+	 }
+	 
+	private void exch(int[][] matrix, int i, int j) {
+		int temp = matrix[i][j];
+		matrix[i][j] = matrix[j][i];
+		matrix[j][i] = temp;
+	}
+
+	public static void main(String[] args) {
+		RotateImage ri = new RotateImage();
+		int[][] img = {{1,2,3},{5,6,7},{9,10,11},{13,14,15}};
+		for(int i=0;i<img[0].length;i++)
+			 System.out.println(Arrays.toString(img[i]));
+		ri.rotate(img);
+	}
+
+}
